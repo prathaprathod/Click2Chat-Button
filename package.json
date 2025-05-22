@@ -1,0 +1,12 @@
+{
+  "name": "whatsapp-chat-button",
+  "version": "1.0.0",
+  "main": "block/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^26.0.0"
+  }
+}
