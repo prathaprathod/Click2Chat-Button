@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WhatsApp Chat Button
  * Description: Adds a floating WhatsApp chat button to your site with settings for number, message, business hours, device visibility, and button position (left/right).
- * Version: 1.25
+ * Version: 1.0
  * Author: Prathap Rathod
  * Author URI: https://prathaprathod.in
  * Plugin URI: https://prathaprathod.in/whatsapp-chat-button
