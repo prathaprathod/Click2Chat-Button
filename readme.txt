@@ -55,19 +55,18 @@ It is designed to be lightweight and should work with any well-coded theme.
 
 == Changelog ==
 
-= 1.25 =
+= 1.0 =
+* Initial release
 * Added: Button theme switcher (Light/Dark)
 * Added: Live preview in admin panel
 * Added: Hover animation on button
 * Improved: Styling and positioning flexibility
 
-= 1.0 =
-* Initial release
-
 == Upgrade Notice ==
 
-= 1.25 =
+= 1.01 =
 New features and styling improvements. Update recommended.
+
 
 == License ==
 
