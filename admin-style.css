@@ -1,0 +1,44 @@
+/* admin-style.css */
+
+.wrap{
+	padding:20px;
+	background: #ffffff;
+    border-radius: 20px;
+}
+.wrap h1 {
+    color: #25D366;
+    font-weight: 700;
+    margin-bottom: 20px;
+	text-align:center;
+}
+
+.form-table th {
+    width: 220px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-table input[type="text"],
+.form-table input[type="time"] {
+    padding: 8px;
+    font-size: 14px;
+    width: 40%;
+    max-width: 100%;
+}
+
+.form-table input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-top: 5px;
+}
+
+.form-table {
+    max-width: 600px;
+}
+
+.submit>.button-primary {
+    font-weight: 600;
+	padding:10px;
+	background:#25D366;
+	color:#ffffff;
+	border:none;
+}
