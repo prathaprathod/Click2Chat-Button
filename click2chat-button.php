@@ -7,6 +7,8 @@
  * Author URI: https://prathaprathod.in
  * Plugin URI: https://prathaprathod.in/click2chat-button
  * Text Domain: click2chat-button
+ * License: GPL v3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
 defined('ABSPATH') or die('No script kiddies please!');
