@@ -121,7 +121,7 @@ function c2c_settings_page() {
                     color: white;
                     padding: 10px 16px;
                     border-radius: 50px;
-                    font-size: 16px;
+                    font-size: 16px; font-weight:600;
                     display: inline-flex;
                     align-items: center;
                     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -172,6 +172,7 @@ function c2c_add_whatsapp_chat_button() {
             padding: 12px 20px;
             border-radius: 50px;
             font-size: 16px;
+font-weight:600;
             z-index: 9999;
             display: flex;
             align-items: center;
