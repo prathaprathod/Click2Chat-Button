@@ -1,5 +1,5 @@
 === Click2Chat Button ===
-Contributors: prathaprathod
+Contributors: prathapratthod
 Donate link: https://prathaprathod.in/donate
 Tags: chat, floating button, messaging, support, contact
 Requires at least: 5.0
