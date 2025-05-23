@@ -10,7 +10,7 @@ class c2c_WhatsApp_Widget extends Widget_Base {
     }
 
     public function get_title() {
-        return __('WhatsApp Chat Button', 'c2c');
+        return __('WhatsApp Chat Button', 'click2chat-button');
     }
 
     public function get_icon() {

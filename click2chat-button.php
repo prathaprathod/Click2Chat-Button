@@ -7,37 +7,77 @@
  * Author URI: https://prathaprathod.in
  * Plugin URI: https://prathaprathod.in/click2chat-button
  * Text Domain: click2chat-button
- * License: GPL v3 or later
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Requires at least: 5.0
+ * Requires PHP: 7.2
  */
 
 defined('ABSPATH') or die('No script kiddies please!');
 
 // Register Settings
 function c2c_register_settings() {
-    add_option('c2c_whatsapp_number', '');
-    add_option('c2c_chat_message', 'Hello! I am interested in your services.');
-    add_option('c2c_enable_button', '1');
-    add_option('c2c_business_hours_start', '09:00');
-    add_option('c2c_business_hours_end', '18:00');
-    add_option('c2c_mobile_only', '0');
-    add_option('c2c_position', 'right');
-    add_option('c2c_offset_bottom', '20');
-    add_option('c2c_offset_side', '20');
-    add_option('c2c_theme', 'light');
+    register_setting( 'c2c_options_group', 'c2c_whatsapp_number', array(
+		'type'              => 'string',
+		'sanitize_callback' => 'sanitize_text_field',
+		'default'           => '',
+	) );
 
-    register_setting('c2c_options_group', 'c2c_whatsapp_number');
-    register_setting('c2c_options_group', 'c2c_chat_message');
-    register_setting('c2c_options_group', 'c2c_enable_button');
-    register_setting('c2c_options_group', 'c2c_business_hours_start');
-    register_setting('c2c_options_group', 'c2c_business_hours_end');
-    register_setting('c2c_options_group', 'c2c_mobile_only');
-    register_setting('c2c_options_group', 'c2c_position');
-    register_setting('c2c_options_group', 'c2c_offset_bottom');
-    register_setting('c2c_options_group', 'c2c_offset_side');
-    register_setting('c2c_options_group', 'c2c_theme');
+	register_setting( 'c2c_options_group', 'c2c_chat_message', array(
+		'type'              => 'string',
+		'sanitize_callback' => 'sanitize_textarea_field',
+		'default'           => '',
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_enable_button', array(
+		'type'              => 'boolean',
+		'sanitize_callback' => 'c2c_sanitize_checkbox',
+		'default'           => 1,
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_business_hours_start', array(
+		'type'              => 'string',
+		'sanitize_callback' => 'c2c_sanitize_time',
+		'default'           => '09:00',
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_business_hours_end', array(
+		'type'              => 'string',
+		'sanitize_callback' => 'c2c_sanitize_time',
+		'default'           => '18:00',
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_mobile_only', array(
+		'type'              => 'boolean',
+		'sanitize_callback' => 'c2c_sanitize_checkbox',
+		'default'           => 0,
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_position', array(
+		'type'              => 'string',
+		'sanitize_callback' => 'c2c_sanitize_position',
+		'default'           => 'right',
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_offset_bottom', array(
+		'type'              => 'integer',
+		'sanitize_callback' => 'absint',
+		'default'           => 20,
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_offset_side', array(
+		'type'              => 'integer',
+		'sanitize_callback' => 'absint',
+		'default'           => 20,
+	) );
+
+	register_setting( 'c2c_options_group', 'c2c_theme', array(
+		'type'              => 'string',
+		'sanitize_callback' => 'c2c_sanitize_theme',
+		'default'           => 'light',
+	) );
 }
-add_action('admin_init', 'c2c_register_settings');
+add_action( 'admin_init', 'c2c_register_settings' );
 
 // Admin Menu
 function c2c_register_menu_page() {
@@ -123,7 +163,8 @@ function c2c_settings_page() {
                     color: white;
                     padding: 10px 16px;
                     border-radius: 50px;
-                    font-size: 16px; font-weight:600;
+                    font-size: 16px; 
+					font-weight:600;
                     display: inline-flex;
                     align-items: center;
                     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -142,39 +183,57 @@ function c2c_settings_page() {
 
 // Display Button
 function c2c_add_whatsapp_chat_button() {
-    if (get_option('c2c_enable_button') != '1') return;
+    if (get_option('c2c_enable_button') !== '1') {
+        return;
+    }
 
-    $start = get_option('c2c_business_hours_start', '09:00');
-    $end = get_option('c2c_business_hours_end', '18:00');
-    $timezone = get_option('timezone_string') ?: 'Asia/Kolkata';
-    date_default_timezone_set($timezone);
+    $start    = get_option('c2c_business_hours_start', '09:00');
+    $end      = get_option('c2c_business_hours_end', '18:00');
+    $timezone = wp_timezone();
 
-    $current_time = date('H:i');
-    if ($current_time < $start || $current_time > $end) return;
+    // Use DateTimeImmutable with WordPress timezone
+    try {
+        $now = new DateTimeImmutable('now', $timezone);
+        $current_time = $now->format('H:i');
+    } catch (Exception $e) {
+        return;
+    }
+
+    if ($current_time < $start || $current_time > $end) {
+        return;
+    }
 
     $is_mobile_only = get_option('c2c_mobile_only') === '1';
-    $position = get_option('c2c_position', 'right');
-    $offset_bottom = get_option('c2c_offset_bottom', '20');
-    $offset_side = get_option('c2c_offset_side', '20');
-    $theme = get_option('c2c_theme', 'light');
+    $position       = get_option('c2c_position', 'right');
+    $offset_bottom  = (int) get_option('c2c_offset_bottom', 20);
+    $offset_side    = (int) get_option('c2c_offset_side', 20);
+    $theme          = get_option('c2c_theme', 'light');
 
     $number = preg_replace('/\D/', '', get_option('c2c_whatsapp_number'));
-    if (!$number) return;
+    if (empty($number)) {
+        return;
+    }
 
     $message = urlencode(get_option('c2c_chat_message'));
 
+    // Escape outputs
+    $position_esc = esc_attr($position);
+    $number_esc   = esc_attr($number);
+    $message_esc  = esc_attr($message);
+    $bg_color     = $theme === 'dark' ? '#075E54' : '#25D366';
+    $bg_color_esc = esc_attr($bg_color);
     ?>
     <style>
         #c2c-whatsapp-button {
             position: fixed;
             bottom: <?php echo esc_attr($offset_bottom); ?>px;
-            <?php echo $position; ?>: <?php echo esc_attr($offset_side); ?>px;
-            background-color: <?php echo $theme === 'dark' ? '#075E54' : '#25D366'; ?>;
+            <?php echo $position_esc; ?>: <?php echo esc_attr($offset_side); ?>px;
+            background-color: <?php echo $bg_color_esc; ?>;
             color: white;
             padding: 12px 20px;
             border-radius: 50px;
             font-size: 16px;
-font-weight:600;
+            font-weight: 600;
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -192,9 +251,9 @@ font-weight:600;
         <?php endif; ?>
     </style>
     <a id="c2c-whatsapp-button"
-       href="https://wa.me/<?php echo esc_attr($number); ?>?text=<?php echo esc_attr($message); ?>"
+       href="https://wa.me/<?php echo $number_esc; ?>?text=<?php echo $message_esc; ?>"
        target="_blank"
-       style="position:fixed; bottom:20px; <?php echo esc_attr($side_position); ?> background-color:#25D366; color:white; padding:12px 20px; border-radius:50px; font-size:16px; z-index:9999; display:flex; align-items:center; text-decoration:none; box-shadow:0 4px 6px rgba(0,0,0,0.2);">
+       rel="noopener noreferrer">
         <svg width="31" height="30" class="_96z7 _brandPortalIcon__whatsappLogo" fill="none"><title id="whatsapp-logo">WhatsApp logo</title><path d="M15.565 0C7.057 0 .133 6.669.13 14.865c-.002 2.621.71 5.179 2.06 7.432L0 30l8.183-2.067a15.89 15.89 0 007.376 1.81h.006c8.508 0 15.432-6.67 15.435-14.866.002-3.97-1.602-7.707-4.517-10.516C23.569 1.551 19.694.001 15.565 0zm0 27.232h-.005c-2.302 0-4.56-.596-6.53-1.722l-.47-.268-4.854 1.226 1.296-4.56-.305-.467a11.983 11.983 0 01-1.962-6.576C2.738 8.052 8.494 2.511 15.57 2.511c3.426.001 6.647 1.288 9.07 3.623s3.756 5.44 3.754 8.742c-.003 6.813-5.758 12.356-12.83 12.356zm7.037-9.255c-.386-.185-2.282-1.084-2.636-1.209-.353-.123-.61-.187-.867.185-.256.372-.996 1.209-1.22 1.456-.226.248-.451.278-.837.093-.386-.186-1.629-.578-3.101-1.844-1.147-.984-1.921-2.2-2.146-2.573-.225-.371-.024-.572.169-.757.173-.165.386-.433.578-.65.192-.217.256-.372.386-.62.128-.247.064-.465-.033-.65-.097-.187-.867-2.015-1.19-2.758-.312-.724-.63-.627-.867-.639-.225-.01-.481-.013-.74-.013-.255 0-.674.093-1.028.465-.353.372-1.35 1.27-1.35 3.098 0 1.829 1.382 3.595 1.575 3.843.193.247 2.72 4 6.589 5.61.92.381 1.638.61 2.199.782.924.283 1.765.242 2.429.147.74-.107 2.282-.898 2.602-1.765.322-.867.322-1.611.226-1.766-.094-.155-.352-.248-.738-.435z" fill="currentColor"></path></svg> &nbsp;
         Chat with us
     </a>
