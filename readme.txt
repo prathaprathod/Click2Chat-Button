@@ -1,73 +1,45 @@
-=== WhatsApp Chat Button ===
-Contributors: prathaprathod  
-Donate link: https://prathaprathod.in  
-Tags: whatsapp, chat, button, floating button, messaging, support  
-Requires at least: 5.0  
-Tested up to: 6.5  
-Stable tag: 1.0 
-License: GPLv2 or later  
-License URI: https://www.gnu.org/licenses/gpl-2.0.html  
+=== Click2Chat Button ===
+Contributors: prathaprathod
+Donate link: https://prathaprathod.in/donate
+Tags: chat, floating button, messaging, support, contact
+Requires at least: 5.0
+Tested up to: 6.5
+Requires PHP: 7.2
+Stable tag: 1.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A customizable floating WhatsApp chat button for WordPress. Easily add a WhatsApp chat widget to your website with business hours, visibility options, and design settings.
+Add a floating chat button to your site with customizable settings for number, message, business hours, device visibility, and button position.
 
 == Description ==
 
-**WhatsApp Chat Button** lets you connect with your website visitors directly through WhatsApp. It's an easy-to-use plugin that allows full customization of the chat button's visibility, appearance, and behavior.
-
-**Key Features:**
-- Display a floating WhatsApp chat button
-- Customize phone number and default message
-- Enable/disable based on business hours
-- Show only on mobile or all devices
-- Choose button position (left/right)
-- Adjust bottom and side offset
-- Light and dark theme options
-- Smooth hover animation
-- Live admin preview for button customization
+Click2Chat Button enables you to add a floating chat button to your WordPress site. Customize the chat number, default message, business hours, device visibility, and button position (left or right) to enhance user engagement.
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/whatsapp-chat-button` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/click2chat-button` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Go to **WhatsApp Chat** in the WordPress admin menu.
-4. Configure your WhatsApp number, message, button position, business hours, etc.
-5. Save changes. The button will appear on the front-end based on your settings.
+3. Navigate to 'Click2Chat Settings' to configure the plugin.
 
 == Frequently Asked Questions ==
 
-= Can I show the button only during specific hours? =  
-Yes, you can set your business hours in the settings. The button will only be visible within the selected time range.
+= Can I customize the chat message? =
+Yes, you can set a default message that users will send when they initiate a chat.
 
-= Does it work only on mobile? =  
-You can choose to display the button on all devices or mobile-only.
-
-= Is it customizable? =  
-Yes! You can adjust the position, theme (light/dark), size, and offset.
-
-= Does it work with all themes? =  
-It is designed to be lightweight and should work with any well-coded theme.
+= Does the button appear on mobile devices only? =
+You can choose to display the button on all devices or restrict it to mobile devices only.
 
 == Screenshots ==
 
-1. Plugin settings panel in the WordPress admin
-2. Button preview in admin
-3. Floating WhatsApp button on frontend
+1. Chat button displayed on the website.
+2. Plugin settings page in the WordPress admin dashboard.
 
 == Changelog ==
 
 = 1.0 =
-* Initial release
-* Added: Button theme switcher (Light/Dark)
-* Added: Live preview in admin panel
-* Added: Hover animation on button
-* Improved: Styling and positioning flexibility
+* Initial release with customizable chat button features.
 
 == Upgrade Notice ==
 
-= 1.01 =
-New features and styling improvements. Update recommended.
-
-
-== License ==
-
-This plugin is free software, and is released under the GPL license. See LICENSE file for more info.
+= 1.0 =
+Initial release.
