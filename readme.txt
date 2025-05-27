@@ -3,7 +3,7 @@ Contributors: prathapratthod
 Donate link: https://prathaprathod.in/donate
 Tags: chat, floating button, messaging, support, contact
 Requires at least: 5.0
-Tested up to: 6.5
+Tested up to: 6.8
 Requires PHP: 7.2
 Stable tag: 1.0
 License: GPLv2 or later
