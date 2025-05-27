@@ -1,0 +1,107 @@
+# Copyright (C) 2024 Prathap Rathod
+# This file is distributed under the GPL v2 or later.
+# Prathap Rathod <https://prathaprathod.in>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Click2Chat Button 1.1\n"
+"Report-Msgid-Bugs-To: https://prathaprathod.in/contact\n"
+"POT-Creation-Date: 2024-05-17 10:00:00+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Manually Created\n"
+"X-Domain: click2chat-button\n"
+
+#. Plugin Name of the plugin/theme
+msgid "Click2Chat Button"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Adds a floating WhatsApp chat button to your site with settings for number, message, business hours, device visibility, and button position (left/right)."
+msgstr ""
+
+#: click2chat-button.php:69
+msgid "WhatsApp Chat Settings"
+msgstr ""
+
+#: click2chat-button.php:70
+msgid "WhatsApp Chat"
+msgstr ""
+
+#: click2chat-button.php:83
+msgid "WhatsApp Chat Button Settings"
+msgstr ""
+
+#: click2chat-button.php:87
+msgid "Enable Button"
+msgstr ""
+
+#: click2chat-button.php:91
+msgid "WhatsApp Number"
+msgstr ""
+
+#: click2chat-button.php:95
+msgid "Default Message"
+msgstr ""
+
+#: click2chat-button.php:99
+msgid "Business Hours"
+msgstr ""
+
+#: click2chat-button.php:102
+msgid "to"
+msgstr ""
+
+#: click2chat-button.php:107
+msgid "Show on Mobile Only"
+msgstr ""
+
+#: click2chat-button.php:111
+msgid "Button Position"
+msgstr ""
+
+#: click2chat-button.php:114
+msgid "Right"
+msgstr ""
+
+#: click2chat-button.php:115
+msgid "Left"
+msgstr ""
+
+#: click2chat-button.php:120
+msgid "Bottom Offset (px)"
+msgstr ""
+
+#: click2chat-button.php:124
+msgid "Side Offset (px)"
+msgstr ""
+
+#: click2chat-button.php:128
+msgid "Theme"
+msgstr ""
+
+#: click2chat-button.php:131
+msgid "Light"
+msgstr ""
+
+#: click2chat-button.php:132
+msgid "Dark"
+msgstr ""
+
+#: click2chat-button.php:137
+msgid "Preview"
+msgstr ""
+
+#: click2chat-button.php:155 click2chat-button.php:238
+msgid "Chat with us"
+msgstr ""
+
+#: click2chat-button.php:154 click2chat-button.php:237
+msgid "WhatsApp logo"
+msgstr ""
